@@ -1,12 +1,13 @@
 from user import User
 from regular_user import RegularUser
 
-class Admin(User):
+class Admin(User): #методы для управления книгами и пользователями, скрывая детали реализации этих операций.
     def __init__(self, username, password):
         super().__init__(username, password, "Admin")
 
-    def add_book(self, books):
-        title = input("Введите название книги: ")
+# абстрагирует процесс добавления книги
+    def add_book(self, books): #Инкапсуляция
+        title = input("Введите название книги: ") #Полиморфизм
         author = input("Введите автора книги: ")
         genre = input("Введите жанр книги: ")
         books.append({"title": title, "author": author, "genre": genre})

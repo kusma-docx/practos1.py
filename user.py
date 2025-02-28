@@ -2,10 +2,10 @@ import bcrypt
 from cryptography.fernet import Fernet
 from datetime import datetime
 
-class User:
-    def __init__(self, username, password, role):
+class User: #абстракция пользователя системы
+    def __init__(self, username, password, role): #скрывает детали реализации, такие как хеширование пароля, шифрование данных и управление историей
         self.username = username
-        self.password = self._hash_password(password)
+        self.password = self._hash_password(password) #Инкапсуляция
         self.role = role
         self.history = []
         self.created_at = datetime.now()
@@ -13,7 +13,7 @@ class User:
         self.encryption_key = Fernet.generate_key()  # Уникальный ключ для каждого пользователя
         self.cipher_suite = Fernet(self.encryption_key)
 
-    @staticmethod
+    @staticmethod #пароль не хранится в открытом виде, и его проверка происходит через специальный метод.
     def _hash_password(password):
         salt = bcrypt.gensalt()
         return bcrypt.hashpw(password.encode(), salt)

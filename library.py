@@ -126,10 +126,3 @@ def main_menu():
                 print("Некорректный выбор. Попробуйте снова.")
         except Exception as e:
             print(f"Произошла ошибка: {e}")
-
-if __name__ == "__main__":
-    while True:
-        if authorize_user():
-            main_menu()
-        else:
-            print("Попробуйте снова.")
